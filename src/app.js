@@ -4,9 +4,14 @@ import "./style.css";
 
 window.onload = function() {
   generateCard();
+
+  setInterval(generateCard, 10000);
 };
 
-document.getElementById("generate-btn").addEventListener("click", generateCard);
+document.getElementById("generate-btn").addEventListener("click", function() {
+  generateCard();
+  changeCardSize();
+});
 
 function generateCard() {
   const suits = ["heart", "spade", "diamond", "club"];
@@ -68,4 +73,13 @@ function getSuitSymbol(suit) {
     club: "♣"
   };
   return suitSymbols[suit];
+}
+
+function changeCardSize() {
+  const card = document.getElementById("card");
+  const width = document.getElementById("widthInput").value;
+  const height = document.getElementById("heightInput").value;
+
+  card.style.width = `${width}px`;
+  card.style.height = `${height}px`;
 }
